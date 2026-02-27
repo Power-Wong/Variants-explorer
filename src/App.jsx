@@ -25,7 +25,8 @@ function App() {
       }
 
       const data = await response.json()
-      setVariantData(data)
+      // MyVariant.info API返回数组,取第一个元素
+      setVariantData(Array.isArray(data) ? data[0] : data)
     } catch (err) {
       setError(err.message)
     } finally {
