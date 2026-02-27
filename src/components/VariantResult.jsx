@@ -20,7 +20,7 @@ function VariantResult({ data }) {
     position: data.vcf?.position || data.hg19?.start || data.hg38?.start || 'N/A',
     ref: data.vcf?.ref || 'N/A',
     alt: data.vcf?.alt || 'N/A',
-    gene: data.gene?.symbol || data.dbsnp?.gene?.symbol || 'N/A',
+    gene: data.gene?.symbol || data.gene?.genename || data.cadd?.gene?.genename || data.dbsnp?.gene?.symbol || 'N/A',
     hgvs: data.hgvs?.genomic || [],
   }
 
@@ -29,7 +29,7 @@ function VariantResult({ data }) {
   const clinvarInfo = {
     clinicalSignificance: clinvar.rcv?.[0]?.clinical_significance || clinvar.clinical_significance || 'N/A',
     reviewStatus: clinvar.rcv?.[0]?.review_status || clinvar.review_status || 'N/A',
-    conditions: clinvar.rcv?.[0]?.conditions?.map(c => c.name).filter(Boolean) || [],
+    conditions: clinvar.rcv?.[0]?.conditions?.name ? [clinvar.rcv[0].conditions.name] : (Array.isArray(clinvar.rcv?.[0]?.conditions) ? clinvar.rcv[0].conditions.map(c => c.name).filter(Boolean) : []),
     accession: clinvar.rcv?.[0]?.accession || clinvar.accession || 'N/A',
   }
 
@@ -43,10 +43,10 @@ function VariantResult({ data }) {
 
   // 提取预测分值
   const predictions = {
-    sift: data.sift?.pred || data.dbnsfp?.sift?.pred || 'N/A',
-    siftScore: data.sift?.score || data.dbnsfp?.sift?.score || 'N/A',
-    polyphen: data.polyphen?.pred || data.dbnsfp?.polyphen2?.hdiv?.pred || 'N/A',
-    polyphenScore: data.polyphen?.score || data.dbnsfp?.polyphen2?.hdiv?.score || 'N/A',
+    sift: data.sift?.pred || (Array.isArray(data.dbnsfp?.sift?.pred) ? data.dbnsfp.sift.pred[0] : data.dbnsfp?.sift?.pred) || 'N/A',
+    siftScore: data.sift?.score || (Array.isArray(data.dbnsfp?.sift?.score) ? data.dbnsfp.sift.score[0] : data.dbnsfp?.sift?.score) || 'N/A',
+    polyphen: data.polyphen?.pred || (Array.isArray(data.dbnsfp?.polyphen2?.hdiv?.pred) ? data.dbnsfp.polyphen2.hdiv.pred[0] : data.dbnsfp?.polyphen2?.hdiv?.pred) || 'N/A',
+    polyphenScore: data.polyphen?.score || (Array.isArray(data.dbnsfp?.polyphen2?.hdiv?.score) ? data.dbnsfp.polyphen2.hdiv.score[0] : data.dbnsfp?.polyphen2?.hdiv?.score) || 'N/A',
     cadd: data.cadd?.phred || data.dbnsfp?.cadd?.phred || 'N/A',
     revel: data.dbnsfp?.revel?.score || 'N/A',
     mutationtaster: data.dbnsfp?.mutationtaster?.pred || 'N/A',
