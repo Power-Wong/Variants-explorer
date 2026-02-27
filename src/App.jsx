@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Navbar from './components/Navbar'
 import SearchBar from './components/SearchBar'
 import VariantResult from './components/VariantResult'
-import { Dna, FlaskConical, Microscope, Dna2 } from 'lucide-react'
+import { Dna, FlaskConical, Microscope } from 'lucide-react'
 
 function App() {
   const [variantData, setVariantData] = useState(null)
@@ -45,7 +45,7 @@ function App() {
             <h1 className="text-5xl font-bold text-gradient">
               VariantExplorer
             </h1>
-            <Dna2 className="w-12 h-12 text-primary-400 animate-pulse" />
+            <Dna className="w-12 h-12 text-primary-400 animate-pulse" />
           </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             探索基因变异数据，获取临床意义、药物信息和预测分值
