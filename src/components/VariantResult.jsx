@@ -5,7 +5,6 @@ import {
   BarChart3,
   MapPin,
   Hash,
-  Gene,
   Stethoscope,
   AlertCircle,
   CheckCircle2,
@@ -83,7 +82,7 @@ function VariantResult({ data }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <InfoItem icon={Hash} label="Variant ID" value={basicInfo.id} mono />
-          <InfoItem icon={Gene} label="基因符号" value={basicInfo.gene} />
+          <InfoItem icon={Dna} label="基因符号" value={basicInfo.gene} />
           <InfoItem icon={MapPin} label="染色体" value={basicInfo.chromosome} />
           <InfoItem icon={MapPin} label="位置" value={basicInfo.position?.toString()} mono />
           <InfoItem icon={Dna} label="REF" value={basicInfo.ref} mono />
