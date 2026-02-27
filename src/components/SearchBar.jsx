@@ -7,7 +7,7 @@ function SearchBar({ onSearch, loading }) {
   const examples = [
     { label: 'rs121434568', value: 'rs121434568' },
     { label: 'chr7:g.55241707G>T', value: 'chr7:g.55241707G>T' },
-    { label: 'NM_000546.5:c.743G>A', value: 'NM_000546.5:c.743G>A' },
+    { label: 'chr17:g.7577120C>T', value: 'chr17:g.7577120C>T' },
   ]
 
   const handleSubmit = (e) => {
